@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+require_once __DIR__ . '/config.php';
 
 $displaySettings = [
     'ad_video_url' => 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
@@ -7,7 +7,9 @@ $displaySettings = [
 ];
 
 try {
+    /** @var Database $db */
     $db = new Database();
+    /** @var PDO $conn */
     $conn = $db->getConnection();
     $conn->exec("ALTER TABLE display_settings ADD COLUMN IF NOT EXISTS ad_video_url TEXT NULL");
     $conn->exec("ALTER TABLE display_settings ADD COLUMN IF NOT EXISTS announcement_text TEXT NULL");
