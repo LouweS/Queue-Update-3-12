@@ -4,9 +4,9 @@ class Database {
     private $db_name = "queuing_system";
     private $username = "root";
     private $password = "";
-    public $conn;
+    public ?PDO $conn;
 
-    public function getConnection() {
+    public function getConnection(): PDO {
         $this->conn = null;
         try {
             $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
